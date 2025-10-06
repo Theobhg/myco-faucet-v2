@@ -65,3 +65,6 @@ jspm_packages/
 
 # Fastify specific
 .fastify*
+
+# Dist
+dist/
