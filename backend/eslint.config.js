@@ -1,10 +1,11 @@
-import { node } from 'unk-dev-eslint-config'
+import { base } from 'unk-dev-eslint-config'
 
 export default [
-  ...node,
+  ...base,
   {
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      'turbo/no-undeclared-env-vars': 'off',
     },
   },
 ]
