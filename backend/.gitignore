@@ -68,3 +68,6 @@ jspm_packages/
 
 # Dist
 dist/
+
+# Env
+.env
