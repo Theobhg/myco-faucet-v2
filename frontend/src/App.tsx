@@ -21,7 +21,7 @@ export function App() {
   }
 
   return (
-    <div className="h-[calc(100vh-224px)]">
+    <div className="h-[calc(100vh-236px)]">
       <Header />
       <Main handleConnectToMetaMask={handleConnectToMetaMask} message={message} />
       <Footer />
