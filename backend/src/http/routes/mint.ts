@@ -9,7 +9,6 @@ const mintSchema = z.object({
 })
 
 const nextMint = new Map<string, number>()
-console.log(nextMint)
 
 export async function mint(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
