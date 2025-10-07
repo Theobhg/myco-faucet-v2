@@ -1,5 +1,7 @@
 import Web3 from 'web3'
 
+import { httpClient } from './http-client'
+
 export async function mint() {
   if (!window.ethereum) {
     throw new Error('MetaMask is not installed.')
@@ -11,4 +13,8 @@ export async function mint() {
   if (!accounts || !accounts.length) {
     throw new Error('No account allowed.')
   }
+
+  const response = await httpClient.post(`/mint/${accounts[0]}`)
+
+  return response.data
 }

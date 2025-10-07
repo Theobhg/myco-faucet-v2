@@ -12,7 +12,7 @@ export function App() {
   async function handleConnectToMetaMask() {
     setMessage({ message: 'Requesting your tokens... wait a moment...', error: false })
     try {
-      const tx = await mint()
+      const { tx } = await mint()
       setMessage({ message: `Your tokens are on the way. Transaction hash: ${tx}`, error: false })
     } catch (error: any) {
       console.log(error)
