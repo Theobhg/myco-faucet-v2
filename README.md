@@ -2,6 +2,8 @@
 
 A modern Web3 faucet application for distributing test tokens on Binance Smart Chain (BSC) Testnet. Built with React, TypeScript, and Web3.js.
 
+# ➡️ SMART CONTRACT REPOSITORY - https://github.com/Theobhg/my-coin-bep-20
+
 ## 🌟 Features
 
 - **Daily Token Distribution**: Users can claim test tokens once every 24 hours
