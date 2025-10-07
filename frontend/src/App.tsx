@@ -28,7 +28,7 @@ export function App() {
       console.error(error)
       setMessage({
         message: error.message
-          ? `Error: ${error.message}`
+          ? `Error: ${error.response?.data?.message || error.message}`
           : `Error: ${error.response?.data?.message} - ${error.response?.data?.error.cause.errorArgs[0]}`,
         error: true,
       })

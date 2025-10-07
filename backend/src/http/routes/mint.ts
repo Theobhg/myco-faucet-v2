@@ -8,6 +8,9 @@ const mintSchema = z.object({
   wallet: z.string(),
 })
 
+const nextMint = new Map<string, number>()
+console.log(nextMint)
+
 export async function mint(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     '/mint/:wallet',
@@ -17,13 +20,19 @@ export async function mint(app: FastifyInstance) {
       },
     },
     async (request, reply) => {
-      try {
-        const { wallet } = request.params
-        const tx = await mintAndTransfer(wallet)
-        return reply.send({ message: 'Minting tokens...', tx })
-      } catch (error) {
-        return reply.status(500).send({ message: 'Error minting tokens', error })
+      const { wallet } = request.params
+      if (nextMint.has(wallet) && nextMint.get(wallet)! > Date.now()) {
+        return reply.status(429).send({ message: 'You can only mint once per day. Try again tomorrow.' })
       }
+
+      try {
+        const tx = await mintAndTransfer(wallet)
+        reply.send({ message: 'Minting tokens...', tx })
+      } catch (error) {
+        reply.status(500).send({ message: 'Error minting tokens', error })
+      }
+
+      nextMint.set(wallet, Date.now() + 1000 * 60 * 60 * 24)
     },
   )
 }
