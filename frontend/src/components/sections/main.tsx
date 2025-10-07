@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 
 type MainProps = {
   handleConnectToMetaMask: () => void
-  message: { message: string; error: boolean }
+  message: { message: string; error?: boolean }
   onChange: (value: string | null) => void
 }
 
