@@ -17,9 +17,13 @@ export async function mint(app: FastifyInstance) {
       },
     },
     async (request, reply) => {
-      const { wallet } = request.params
-      const tx = await mintAndTransfer(wallet)
-      return reply.send({ message: 'Minting tokens...', tx })
+      try {
+        const { wallet } = request.params
+        const tx = await mintAndTransfer(wallet)
+        return reply.send({ message: 'Minting tokens...', tx })
+      } catch (error) {
+        return reply.status(500).send({ message: 'Error minting tokens', error })
+      }
     },
   )
 }
