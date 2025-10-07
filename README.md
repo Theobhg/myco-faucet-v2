@@ -1,5 +1,7 @@
 # Myco Faucet V2 🚰
 
+![Myco Faucet Demo](./screen.gif)
+
 A modern Web3 faucet application for distributing test tokens on Binance Smart Chain (BSC) Testnet. Built with React, TypeScript, and Web3.js.
 
 # ➡️ SMART CONTRACT REPOSITORY - https://github.com/Theobhg/my-coin-bep-20
