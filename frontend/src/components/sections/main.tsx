@@ -11,7 +11,7 @@ export function Main({ handleConnectToMetaMask, message }: MainProps) {
       <div className="flex flex-col items-center justify-center gap-4">
         <h2 className="text-primary text-5xl font-bold">Get your MyCoins</h2>
         <p className="text-muted-foreground text-xl w-124 text-center">
-          Once a day, you can claim 1000 coins. Is free just connecting your MetaMask wallet.
+          Once a day, you can claim 10.000 coins. Is free just connecting your MetaMask wallet.
         </p>
       </div>
       <Button
@@ -20,7 +20,7 @@ export function Main({ handleConnectToMetaMask, message }: MainProps) {
         onClick={handleConnectToMetaMask}
       >
         <img src="/meta-mask.svg" alt="MetaMask Logo" className="w-8 h-8" />
-        Connect MetaMask
+        Get MYCO tokens
       </Button>
       {message && (
         <div

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { Footer, Header, Main } from './components/sections'
-import { mint } from './services/web3-service'
+import { mint } from './services/web3'
 
 export function App() {
   const [message, setMessage] = useState<{ message: string; error: boolean }>({
