@@ -1,12 +1,15 @@
+import ReCAPTCHA from 'react-google-recaptcha'
+
 import { LiquidEther } from '../liquid-ether'
 import { Button } from '../ui/button'
 
 type MainProps = {
   handleConnectToMetaMask: () => void
   message: { message: string; error: boolean }
+  onChange: (value: string | null) => void
 }
 
-export function Main({ handleConnectToMetaMask, message }: MainProps) {
+export function Main({ handleConnectToMetaMask, message, onChange }: MainProps) {
   return (
     <>
       <div style={{ width: '100%', height: 1000, position: 'absolute', top: 0, left: 0 }}>
@@ -29,7 +32,7 @@ export function Main({ handleConnectToMetaMask, message }: MainProps) {
         />
       </div>
       <main className="bg-background h-full max-w-7xl mx-auto flex flex-col items-center justify-center gap-8 z-99999">
-        <div className="flex flex-col items-center justify-center gap-12 bg-white/2 backdrop-blur-2xl border border-border rounded-2xl p-8 w-full h-140">
+        <div className="flex flex-col items-center justify-center gap-12 bg-white/2 backdrop-blur-2xl border border-border rounded-2xl p-8 w-full h-160">
           <div className="flex flex-col items-center justify-center gap-4">
             <h2 className="text-primary text-5xl font-bold">Get your MyCoins</h2>
             <p className="text-muted-foreground text-xl w-124 text-center">
@@ -48,13 +51,12 @@ export function Main({ handleConnectToMetaMask, message }: MainProps) {
             <div
               className={`flex flex-col items-center justify-center gap-4 max-w-5xl  ${message.error && 'border-3 border-red-500 bg-amber-700/20'} p-6 rounded-2xl`}
             >
-              <p
-                className={`text-xl pt-8 w-full text-center break-all ${message.error ? 'text-red-500' : 'text-primary'}`}
-              >
+              <p className={`text-xl w-full text-center break-all ${message.error ? 'text-red-500' : 'text-primary'}`}>
                 {message.message}
               </p>
             </div>
           )}
+          <ReCAPTCHA sitekey={`${import.meta.env.VITE_RECAPTCHA_KEY}`} onChange={onChange} theme="dark" type="image" />
         </div>
       </main>
     </>

@@ -4,14 +4,24 @@ import { Footer, Header, Main } from './components/sections'
 import { mint } from './services/web3'
 
 export function App() {
+  const [captcha, setCaptcha] = useState<string>('')
+
   const [message, setMessage] = useState<{ message: string; error: boolean }>({
     message: '',
     error: false,
   })
 
+  function onChange(value: string | null) {
+    setCaptcha(value || '')
+  }
+
   async function handleConnectToMetaMask() {
     setMessage({ message: 'Requesting your tokens... wait a moment...', error: false })
     try {
+      if (!captcha) {
+        setMessage({ message: 'Please verify you are not a robot', error: true })
+        return
+      }
       const { tx } = await mint()
       setMessage({ message: `Your tokens are on the way. Transaction hash: ${tx}`, error: false })
     } catch (error: any) {
@@ -23,7 +33,7 @@ export function App() {
   return (
     <div className="h-[calc(100vh-236px)]">
       <Header />
-      <Main handleConnectToMetaMask={handleConnectToMetaMask} message={message} />
+      <Main handleConnectToMetaMask={handleConnectToMetaMask} message={message} onChange={onChange} />
       <Footer />
     </div>
   )
