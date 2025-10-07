@@ -5,13 +5,21 @@ import { z } from 'zod'
 import { mintAndTransfer } from '../../providers/web3-provider.js'
 
 const mintSchema = z.object({
-  to: z.string(),
+  wallet: z.string(),
 })
 
 export async function mint(app: FastifyInstance) {
-  app.withTypeProvider<ZodTypeProvider>().post('/mint', { schema: { body: mintSchema } }, async (request, reply) => {
-    const { to } = request.body
-    const tx = await mintAndTransfer(to)
-    return reply.send({ message: 'Minting tokens...', tx })
-  })
+  app.withTypeProvider<ZodTypeProvider>().post(
+    '/mint/:wallet',
+    {
+      schema: {
+        params: mintSchema,
+      },
+    },
+    async (request, reply) => {
+      const { wallet } = request.params
+      const tx = await mintAndTransfer(wallet)
+      return reply.send({ message: 'Minting tokens...', tx })
+    },
+  )
 }
